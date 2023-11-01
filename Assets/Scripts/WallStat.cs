@@ -25,7 +25,7 @@ public class WallStat : MonoBehaviour
 
     private Camera theCamera;
     private float halfHeight;
-    float wallHeightScale;
+    private float wallHeightScale;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxcollider;
@@ -44,45 +44,39 @@ public class WallStat : MonoBehaviour
         boxcollider = GetComponent<BoxCollider2D>();
     }
 
-    public int Hit(int _playerAtk)
+    public int Hit(int playerAtk)
     {
-        float saveX = spriteRenderer.size.x;
-        //float savePositionX = saveScaleX * 32 - 56;
-        int playerAtk = _playerAtk;
-        int dmg;
-        if (def >= playerAtk)
-            dmg = 1;
-        else
-            dmg = playerAtk - def;
+        float initialSizeX = spriteRenderer.size.x;
 
-        if (currentHp - dmg <= 0)
+        int dmg = def >= playerAtk ? 1 : playerAtk - def;
+        currentHp -= dmg;
+
+        if (currentHp <= 0)
         {
-            // PlayerStat.instance.currentExp += exp;
             GameOver();
             return dmg;
-        }
-        else
-        {
-            currentHp -= dmg;
         }
 
         CalWallScaleAndHp();
 
-        float savePositionX = spriteRenderer.size.x - 56;
-
-        float gap = saveX - spriteRenderer.size.x;
-        GameObject clone = Instantiate(wallEffect);
-        clone.GetComponent<SpriteRenderer>().sprite = spriteRenderer.sprite;
-        clone.GetComponent<SpriteRenderer>().size = new Vector2(gap, wallHeightScale);
-        clone.transform.position = new Vector3(savePositionX, 0, 10f);
-
-        Color color = spriteRenderer.color;
-        color.r *= (float)0.8;
-        color.g *= (float)0.8;
-        color.b *= (float)0.8;
-        clone.GetComponent<SpriteRenderer>().color = color;
+        float gap = initialSizeX - spriteRenderer.size.x;
+        CreateWallEffect(gap, spriteRenderer.size.x - 56);
 
         return dmg;
+    }
+
+    private void CreateWallEffect(float gap, float positionX)
+    {
+        GameObject clone = Instantiate(wallEffect);
+        SpriteRenderer cloneRenderer = clone.GetComponent<SpriteRenderer>();
+
+        cloneRenderer.sprite = spriteRenderer.sprite;
+        cloneRenderer.size = new Vector2(gap, wallHeightScale);
+        clone.transform.position = new Vector3(positionX, 0, 10f);
+    
+        Color color = cloneRenderer.color;
+        color *= 0.8f;
+        cloneRenderer.color = color;
     }
 
     private void FixedUpdate()
@@ -118,38 +112,34 @@ public class WallStat : MonoBehaviour
 
     void CalWallScaleAndHp()
     {
-        /*
         float hscale = currentHp / hp;
-        transform.localScale = new Vector3(hscale * 100, 40, 1);
-        if (currentHp <= hp)
-        {
-            hpSlider.value = hscale;
-        }
-        else
-        {
-            hpSlider.value = 1;
-        }*/
-        
-        float hscale = currentHp / hp;
-        spriteRenderer.size = new Vector2(50 * hscale, 20);
-        boxcollider.size = new Vector2(50 * hscale, 20);
-        boxcollider.offset = new Vector2(50 * hscale / 2, 20 / 2);
-        if (currentHp < hp)
-        {
-            hpSlider.value = hscale;
-        }
-        else
-        {
-            hpSlider.value = 1;
-        }
+
+        UpdateWallScale(hscale);
+        UpdateHpSlider(hscale);
+    }
+
+    private void UpdateWallScale(float scale)
+    {
+        Vector2 newSize = new Vector2(50 * scale, 20);
+        spriteRenderer.size = newSize;
+        boxcollider.size = newSize;
+        boxcollider.offset = newSize / 2;
+    }
+
+    private void UpdateHpSlider(float scale)
+    {
+        hpSlider.value = (currentHp < hp) ? scale : 1;
     }
     
     public void GameOver()
     {
         UIManager.instance.DisableBackButton();
         UIManager.instance.resetJoystick();
-        PlayerStat.instance.GetComponent<PlayerController>().gameObject.transform.position = new Vector3(0, 0, 0);
-        PlayerStat.instance.GetComponent<PlayerController>().resetMove();
+
+        PlayerController playerController = PlayerStat.instance.GetComponent<PlayerController>();
+        playerController.gameObject.transform.position = Vector3.zero;
+        playerController.resetMove();
+
         LobbyManager.instance.gameObject.SetActive(true);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
     }
