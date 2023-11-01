@@ -39,20 +39,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (joystick.GetHorizontalValue() > 0)
-        {
-            move = 1;
-        }
-        else if (joystick.GetHorizontalValue() < 0)
-        {
-            move = -1;
-        }
-        else if (joystick.GetHorizontalValue() == 0)
-        {
-            move = 0;
-        }
-
-
         if (!attacking && startAttack)
         {
             animator.SetFloat("Direction", -1f);
@@ -61,7 +47,6 @@ public class PlayerController : MonoBehaviour
 
             if (animator.GetFloat("Combo") == 0f)
             {
-
                 animator.SetFloat("Combo", 1f);
                 animator.SetBool("Attacking", true);
 
@@ -90,7 +75,22 @@ public class PlayerController : MonoBehaviour
             startAttack = false;
         }
 
+        if (joystick.GetHorizontalValue() > 0)
+        {
+            move = 1;
+        }
+        else if (joystick.GetHorizontalValue() < 0)
+        {
+            move = -1;
+        }
+        else if (joystick.GetHorizontalValue() == 0)
+        {
+            move = 0;
+        }
+
         move = Input.GetAxisRaw("Horizontal");
+
+        Move();
     }
 
     IEnumerator IEshaking()
@@ -121,11 +121,6 @@ public class PlayerController : MonoBehaviour
     public void resetMove()
     {
         move = 0;
-    }
-
-    private void FixedUpdate()
-    {
-        Move();
     }
 
     private void Move()

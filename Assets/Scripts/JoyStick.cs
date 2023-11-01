@@ -52,7 +52,7 @@ public virtual void OnDrag(PointerEventData ped)
 
     public float GetHorizontalValue()
     {
-        return inputVector.x;
+            return inputVector.x;
     }
 
     public void ResetInputVector()
