@@ -19,7 +19,6 @@ public class HurtEnemy : MonoBehaviour
     {
         thePlayerStat = GetComponentInParent<PlayerStat>();////->>>get컴포넌트로 바꾸수닛나?
         playerController = GetComponentInParent<PlayerController>();
-        theAudio = FindObjectOfType<AudioManager>();
         position = 1f;
     }
 
@@ -27,7 +26,7 @@ public class HurtEnemy : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Wall") && !playerController.attackDamageFinished)
         {
-            theAudio.Play(atk_sound);
+            AudioManager.instance.Play(atk_sound);
             playerController.attackDamageFinished = true;
 
             int mathAtk = (thePlayerStat.atk + thePlayerStat.plus_atk) * 25;
