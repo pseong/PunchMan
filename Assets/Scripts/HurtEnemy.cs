@@ -6,14 +6,13 @@ public class HurtEnemy : MonoBehaviour
 {
     public GameObject prefabs_floating_text;
     public GameObject parent;
+    public ParticleSystem ps;
     public float position;
 
     public string atk_sound;
 
     private PlayerStat thePlayerStat;
     private PlayerController playerController;
-
-    private ParticleSystem ps;
     void Start()
     {
         thePlayerStat = GetComponentInParent<PlayerStat>();////->>>get컴포넌트로 바꾸수닛나?
@@ -23,7 +22,7 @@ public class HurtEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall") && !playerController.attackDamageFinished)
+        if (collision.gameObject.CompareTag("Wall") && !playerController.attackDamageFinished)
         {
             AudioManager.instance.Play(atk_sound);
             playerController.attackDamageFinished = true;
@@ -58,22 +57,22 @@ public class HurtEnemy : MonoBehaviour
 
             GameObject clone = Instantiate(prefabs_floating_text, vector, Quaternion.Euler(Vector3.zero));
             clone.GetComponent<FloatingText>().text.text = dmg.ToString();
-            clone.GetComponent<FloatingText>().text.fontSize = 300;
+            clone.GetComponent<FloatingText>().text.fontSize = 50;
             clone.transform.SetParent(parent.transform);
 
 
             if (cri == false)
             {
-                clone.GetComponent<FloatingText>().text.color = Color.white;
-                clone.transform.localScale = new Vector3(0.040f, 0.040f, 1);
-            } else
+                clone.GetComponent<FloatingText>().text.color = Color.black;
+            }
+            else
             {
                 clone.GetComponent<FloatingText>().text.color = Color.red;
-                clone.transform.localScale = new Vector3(0.045f, 0.045f, 1);
-            }//이상하게도 부모를 붙여주면 원래 0.03이 0.3으로 바뀌므로 다시 0.03으로 바꿔줘야한다.
+            }
 
-            if (ps == null)
+            if (ps == null) {
                 ps = FindObjectOfType<ParticleSystem>();
+            }
             ps.transform.position = new Vector3(transform.position.x, ps.transform.position.y, ps.transform.position.z);
             ps.Emit(5);
         }
