@@ -28,15 +28,12 @@ public class UIManager : MonoBehaviour
     public Button BackButton;
     public string touch_sound;
 
-    private AudioManager audioManager;
-
     private void Awake()
     {
         if (instance != this)
         {
             Destroy(gameObject);
         }
-        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void EnableBackButton()
@@ -62,7 +59,7 @@ public class UIManager : MonoBehaviour
 
     public void ClickBack()
     {
-        audioManager.Play(touch_sound);
+        AudioManager.instance.Play(touch_sound);
         UIManager.instance.DisableBackButton();
         UIManager.instance.resetJoystick();
         PlayerStat.instance.GetComponent<PlayerController>().gameObject.transform.position = new Vector3(0, 0, 0);

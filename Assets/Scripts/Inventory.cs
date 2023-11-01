@@ -21,7 +21,6 @@ public class Inventory : MonoBehaviour
     private static Inventory m_instance;
 
     private DataBaseManager theDataBase;
-    private AudioManager theAudio;
 
     public Text descriptionTxt; // 부연설명.
 
@@ -98,7 +97,6 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         theDataBase = FindObjectOfType<DataBaseManager>();
-        theAudio = FindObjectOfType<AudioManager>();
         playerStat = FindObjectOfType<PlayerStat>();
     }
 
@@ -106,7 +104,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedTab != 0)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedTab = 0;
         ShowItem();
@@ -116,7 +114,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedTab != 1)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedTab = 1;
         ShowItem();
@@ -126,7 +124,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedTab != 2)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedTab = 2;
         ShowItem();
@@ -136,7 +134,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedTab != 3)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedTab = 3;
         ShowItem();
@@ -146,7 +144,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedTab != 4)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedTab = 4;
         ShowItem();
@@ -168,7 +166,7 @@ public class Inventory : MonoBehaviour
 
     public void CloseIventory()
     {
-        theAudio.Play(touch_sound);
+        AudioManager.instance.Play(touch_sound);
 
         EquipEffect();
         LobbyManager.instance.ResetStat();
@@ -270,7 +268,7 @@ public class Inventory : MonoBehaviour
     {
         if (selectedItem != index)
         {
-            theAudio.Play(touch_sound);
+            AudioManager.instance.Play(touch_sound);
         }
         selectedItem = index;
         StopAllCoroutines();

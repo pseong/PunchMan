@@ -12,7 +12,6 @@ public class HurtEnemy : MonoBehaviour
 
     private PlayerStat thePlayerStat;
     private PlayerController playerController;
-    private AudioManager theAudio;
 
     private ParticleSystem ps;
     void Start()
