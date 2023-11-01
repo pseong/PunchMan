@@ -57,17 +57,13 @@ public class WallStat : MonoBehaviour
 
         if (currentHp - dmg <= 0)
         {
+            // PlayerStat.instance.currentExp += exp;
             GameOver();
+            return dmg;
         }
         else
         {
             currentHp -= dmg;
-            
-            //if (currentHp <= 0)
-            //{
-            //    Destroy(this.gameObject);
-            //    PlayerStat.instance.currentExp += exp;
-            //}
         }
 
         CalWallScaleAndHp();
