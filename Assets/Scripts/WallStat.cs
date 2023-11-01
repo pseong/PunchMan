@@ -23,7 +23,6 @@ public class WallStat : MonoBehaviour
 
     public GameObject wallEffect;
 
-    private Camera theCamera;
     private float wallHeight;
 
     private SpriteRenderer spriteRenderer;
@@ -33,8 +32,6 @@ public class WallStat : MonoBehaviour
     {
         currentHp = hp;
         currentTime = time;
-
-        theCamera = FindObjectOfType<Camera>();
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxcollider = GetComponent<BoxCollider2D>();
