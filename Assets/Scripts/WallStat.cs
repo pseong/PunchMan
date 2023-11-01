@@ -8,7 +8,7 @@ public class WallStat : MonoBehaviour
 {
     public float hp;
     public float currentHp;
-    public float RecoverHp;
+    public float recoverHp;
     public int atk;
     public int def;
     public int exp;
@@ -98,6 +98,7 @@ public class WallStat : MonoBehaviour
             hpSlider.value = 0;
             timeTxt.text = "0";
             GameOver();
+            return;
         }
         else
         {
@@ -106,9 +107,9 @@ public class WallStat : MonoBehaviour
             timeTxt.text = currentTime.ToString("N1");
         }
 
-        if (currentHp + Time.deltaTime * RecoverHp < hp)
+        if (currentHp + Time.deltaTime * recoverHp < hp)
         {
-            currentHp += Time.deltaTime * RecoverHp;
+            currentHp += Time.deltaTime * recoverHp;
         }
         else
         {

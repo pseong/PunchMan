@@ -623,7 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 1000
   currentHp: 0
-  RecoverHp: 50
+  recoverHp: 50
   atk: 0
   def: 0
   exp: 0
