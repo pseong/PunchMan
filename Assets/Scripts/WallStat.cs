@@ -24,8 +24,7 @@ public class WallStat : MonoBehaviour
     public GameObject wallEffect;
 
     private Camera theCamera;
-    private float halfHeight;
-    private float wallHeightScale;
+    private float wallHeight;
 
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxcollider;
@@ -36,12 +35,11 @@ public class WallStat : MonoBehaviour
         currentTime = time;
 
         theCamera = FindObjectOfType<Camera>();
-        halfHeight = theCamera.orthographicSize;
-        double a = halfHeight + 4.5;
-        wallHeightScale = (float)a;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxcollider = GetComponent<BoxCollider2D>();
+
+        wallHeight = spriteRenderer.size.y;
     }
 
     public int Hit(int playerAtk)
@@ -71,7 +69,7 @@ public class WallStat : MonoBehaviour
         SpriteRenderer cloneRenderer = clone.GetComponent<SpriteRenderer>();
 
         cloneRenderer.sprite = spriteRenderer.sprite;
-        cloneRenderer.size = new Vector2(gap, wallHeightScale);
+        cloneRenderer.size = new Vector2(gap, wallHeight);
         clone.transform.position = new Vector3(positionX, 0, 10f);
     
         Color color = cloneRenderer.color;
