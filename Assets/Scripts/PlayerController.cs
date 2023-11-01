@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        transform.position += Vector3.right * move * (playerStat.speed + playerStat.plus_speed) / 10 * Time.deltaTime;
+        playerRigidbody.velocity = new Vector2(0.1f * move * (playerStat.speed + playerStat.plus_speed), playerRigidbody.velocity.y);
 
         if (move > 0)
         {
