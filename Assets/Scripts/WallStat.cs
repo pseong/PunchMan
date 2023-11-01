@@ -27,7 +27,7 @@ public class WallStat : MonoBehaviour
     private float halfHeight;
     float wallHeightScale;
 
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxcollider;
 
     void Start()
@@ -40,13 +40,13 @@ public class WallStat : MonoBehaviour
         double a = halfHeight + 4.5;
         wallHeightScale = (float)a;
 
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         boxcollider = GetComponent<BoxCollider2D>();
     }
 
     public int Hit(int _playerAtk)
     {
-        float saveX = renderer.size.x;
+        float saveX = spriteRenderer.size.x;
         //float savePositionX = saveScaleX * 32 - 56;
         int playerAtk = _playerAtk;
         int dmg;
@@ -68,15 +68,15 @@ public class WallStat : MonoBehaviour
 
         CalWallScaleAndHp();
 
-        float savePositionX = renderer.size.x - 56;
+        float savePositionX = spriteRenderer.size.x - 56;
 
-        float gap = saveX - renderer.size.x;
+        float gap = saveX - spriteRenderer.size.x;
         GameObject clone = Instantiate(wallEffect);
-        clone.GetComponent<SpriteRenderer>().sprite = renderer.sprite;
+        clone.GetComponent<SpriteRenderer>().sprite = spriteRenderer.sprite;
         clone.GetComponent<SpriteRenderer>().size = new Vector2(gap, wallHeightScale);
         clone.transform.position = new Vector3(savePositionX, 0, 10f);
 
-        Color color = renderer.color;
+        Color color = spriteRenderer.color;
         color.r *= (float)0.8;
         color.g *= (float)0.8;
         color.b *= (float)0.8;
@@ -131,7 +131,7 @@ public class WallStat : MonoBehaviour
         }*/
         
         float hscale = currentHp / hp;
-        renderer.size = new Vector2(50 * hscale, 20);
+        spriteRenderer.size = new Vector2(50 * hscale, 20);
         boxcollider.size = new Vector2(50 * hscale, 20);
         boxcollider.offset = new Vector2(50 * hscale / 2, 20 / 2);
         if (currentHp < hp)
