@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0421fc8da2eb471eaa225a54bea285b
+guid: 5fa8f846ceb5940899c43676d67d3dd7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -134,7 +134,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: IMG_0031_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 0
+        width: 17
+        height: 56
+      alignment: 9
+      pivot: {x: 0.49542484, y: 0.97083336}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6526c65b300b3453db65c8c6bfde486a
+      internalID: -405364657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IMG_0031_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 11
+        height: 56
+      alignment: 9
+      pivot: {x: 0.50000036, y: 0.9791667}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48d672031a5b74871aae8b64820b7e35
+      internalID: 458792024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -145,7 +187,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      IMG_0031_0: -405364657
+      IMG_0031_1: 458792024
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -82,6 +82,7 @@ public class Inventory : MonoBehaviour
         inventoryItemList.Add(new Item(60000, "땡땡땡신발", "속도 +100", Item.ItemType.SHOES, 0, 0, 0, 0, 100));
         inventoryItemList.Add(new Item(70000, "롤로로롤옷", "공격력 +2", Item.ItemType.CLOTHES, 2));
         inventoryItemList.Add(new Item(80000, "말마다랃라머리", "공격력 +2", Item.ItemType.HEAD, 2));
+        inventoryItemList.Add(new Item(80001, "둥이머리", "공격력 +2", Item.ItemType.HEAD, 2));
         for (int i = 0; i < 10; ++i)
         {
             inventoryItemList.Add(new Item(90000, "지피지피신모자", "공격력 +2", Item.ItemType.HAT, 5));
