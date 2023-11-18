@@ -6921,22 +6921,22 @@ PrefabInstance:
     - target: {fileID: 8711157888735228621, guid: 55761392568484c81af1ae098388e203,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.04
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 8711157888735228621, guid: 55761392568484c81af1ae098388e203,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.87
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: 8790626651372487088, guid: 55761392568484c81af1ae098388e203,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.13
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8790626651372487088, guid: 55761392568484c81af1ae098388e203,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.87
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 8790626651372487088, guid: 55761392568484c81af1ae098388e203,
         type: 3}
