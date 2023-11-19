@@ -49,9 +49,7 @@ public class PlayerController : MonoBehaviour
             {
                 animator.SetFloat("Combo", 1f);
                 animator.SetBool("Attacking", true);
-
                 StartCoroutine(IEattacking());
-                StartCoroutine(IEshaking());
                 StartCoroutine(IEcombo());
             }
             else if (animator.GetFloat("Combo") == 1f)
@@ -59,7 +57,6 @@ public class PlayerController : MonoBehaviour
                 StopAllCoroutines();
                 animator.SetFloat("Combo", 2f);
                 animator.SetBool("Attacking", true);
-                StartCoroutine(IEshaking());
                 StartCoroutine(IEattacking());
                 StartCoroutine(IEcombo());
             }
@@ -68,7 +65,6 @@ public class PlayerController : MonoBehaviour
                 StopAllCoroutines();
                 animator.SetFloat("Combo", 3f);
                 animator.SetBool("Attacking", true);
-                camera.Shake_();
                 StartCoroutine(IEattacking());
                 StartCoroutine(IEcomboLast());
             }
@@ -91,12 +87,6 @@ public class PlayerController : MonoBehaviour
         move = Input.GetAxisRaw("Horizontal");
 
         Move();
-    }
-
-    IEnumerator IEshaking()
-    {
-        yield return new WaitForSeconds(0.1f);
-        camera.Shake_();
     }
     IEnumerator IEcomboLast()
     {
