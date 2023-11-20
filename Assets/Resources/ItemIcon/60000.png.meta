@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 5c7354fa70003284fa782dca8f1979de
+guid: 128042b37073140bba00fcc11ff1f902
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -3664327255592773261
-    second: 60000_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -66,9 +63,9 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -135,26 +132,39 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 60000_0
+      name: IMG_0029_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 9
+        x: 0
+        y: 0
         width: 24
-        height: 15
+        height: 18
       alignment: 9
-      pivot: {x: 0.7, y: 0.95}
+      pivot: {x: 0.7972222, y: 0.9259259}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98d6e3619d289ad4e91f1e230b08dd2b
-      internalID: -3664327255592773261
+      spriteID: 8f049f373484c4d9bb33053858d3f15a
+      internalID: -841833903
       vertices: []
       indices: 
       edges: []
@@ -170,7 +180,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      60000_0: -3664327255592773261
+      IMG_0029_0: 1426079263
+      IMG_0029_1: -841833903
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

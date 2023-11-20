@@ -17,7 +17,9 @@ public class Item
         HEAD,
         CLOTHES,
         GLOVES,
-        SHOES
+        PANTS,
+        SHOES,
+        AIR
     }
 
     public int atk;
@@ -34,10 +36,10 @@ public class Item
         itemDescription = _itemDes;
         itemType = _itemType;
         itemCount = _itemCount;
-        itemIcon = Resources.Load("ItemIcon/" + _itemID.ToString(), typeof(Sprite)) as Sprite;
+        itemIcon = Resources.Load<Sprite>("ItemIcon/" + _itemID.ToString());
 
         atk = _atk;
-        cric = _cric; 
+        cric = _cric;
         crid = _crid;
         speed = _speed;
         cdr = _cdr;
