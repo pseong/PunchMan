@@ -68,7 +68,7 @@ public class WallStat : MonoBehaviour
         cloneRenderer.sprite = spriteRenderer.sprite;
         cloneRenderer.size = new Vector2(gap, wallHeight);
         clone.transform.position = new Vector3(positionX, 0, 10f);
-    
+
         Color color = cloneRenderer.color;
         color *= 0.8f;
         cloneRenderer.color = color;
@@ -125,12 +125,9 @@ public class WallStat : MonoBehaviour
     {
         hpSlider.value = (currentHp < hp) ? scale : 1;
     }
-    
+
     public void GameOver()
     {
-        UIManager.instance.DisableBackButton();
-        UIManager.instance.resetJoystick();
-
         PlayerController playerController = PlayerStat.instance.GetComponent<PlayerController>();
         playerController.gameObject.transform.position = Vector3.zero;
         playerController.resetMove();

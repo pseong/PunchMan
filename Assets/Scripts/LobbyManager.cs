@@ -46,7 +46,8 @@ public class LobbyManager : MonoBehaviour
         player = FindObjectOfType<PlayerController>();
     }
     private PlayerController player;
-    void Start() {
+    void Start()
+    {
         Inventory.instance.gameObject.SetActive(false);
         ResetStat();
     }
@@ -65,8 +66,6 @@ public class LobbyManager : MonoBehaviour
         AudioManager.instance.Play(touch_sound);
         player.gameObject.transform.position = new Vector3(0, 0, 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        UIManager.instance.EnableBackButton();
-        UIManager.instance.resetJoystick();
         PlayerStat.instance.GetComponent<PlayerController>().resetMove();
         gameObject.SetActive(false);
         UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");

@@ -36,32 +36,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void EnableBackButton()
-    {
-        BackButton.gameObject.SetActive(true);
-    }
-
-    public void DisableBackButton()
-    {
-        BackButton.gameObject.SetActive(false);
-    }
-
     public void ClickAttack()
     {
         playercontroller.startAttack = true;
     }
 
-    public void resetJoystick()
-    {
-        joystick.localPosition = Vector3.zero;
-        joystick.GetComponentInParent<JoyStick>().ResetInputVector();
-    }
-
     public void ClickBack()
     {
         AudioManager.instance.Play(touch_sound);
-        UIManager.instance.DisableBackButton();
-        UIManager.instance.resetJoystick();
         PlayerStat.instance.GetComponent<PlayerController>().gameObject.transform.position = new Vector3(0, 0, 0);
         PlayerStat.instance.GetComponent<PlayerController>().resetMove();
         LobbyManager.instance.gameObject.SetActive(true);

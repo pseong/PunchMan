@@ -17,25 +17,15 @@ public class JoyStick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointer
         joystickImg = transform.GetChild(0).GetComponent<Image>(); // 나중에 inchildren으로 바꿔보자 // 바꿀필요 없다 이게더 성능 좋다.
     }
 
-public virtual void OnDrag(PointerEventData ped)
+    public virtual void OnDrag(PointerEventData ped)
     {
-        //ped.pressEventCamer
         Vector2 pos;
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(bgImg.rectTransform, ped.position, null, out pos))
         {
-            pos.x = (pos.x / bgImg.rectTransform.sizeDelta.x);
-            //pos.y = (pos.x / bgImg.rectTransform.sizeDelta.y);
-            pos.y = 0;
-
-            //inputVector = new Vector3(pos.x * 2, pos.y * 2, 0);
-            inputVector = new Vector3(pos.x * 2, 0, 0);
-
-            inputVector = (inputVector.magnitude > 0.759f) ? inputVector.normalized * 0.759f : inputVector;
-
-            //joystickImg.rectTransform.anchoredPosition = new Vector3(inputVector.x * (bgImg.rectTransform.sizeDelta.x / 3)
-            //    , inputVector.y * (bgImg.rectTransform.sizeDelta.y / 3));
-
-            joystickImg.rectTransform.anchoredPosition = new Vector3(inputVector.x * (bgImg.rectTransform.sizeDelta.x / 3), 0);
+            pos.x -= 150;
+            if (pos.x <= -75) pos.x = -75;
+            if (pos.x >= 75) pos.x = 75;
+            joystickImg.rectTransform.anchoredPosition = new Vector2(pos.x, 0);
         }
     }
 
@@ -52,7 +42,7 @@ public virtual void OnDrag(PointerEventData ped)
 
     public float GetHorizontalValue()
     {
-            return inputVector.x;
+        return inputVector.x;
     }
 
     public void ResetInputVector()
