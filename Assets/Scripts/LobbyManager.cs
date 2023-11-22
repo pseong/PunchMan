@@ -64,7 +64,7 @@ public class LobbyManager : MonoBehaviour
     public void ClickGameStart()
     {
         AudioManager.instance.Play(touch_sound);
-        player.gameObject.transform.position = new Vector3(0, 0, 0);
+        player.gameObject.transform.position = new Vector3(60, 0, 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         PlayerStat.instance.GetComponent<PlayerController>().resetMove();
         gameObject.SetActive(false);

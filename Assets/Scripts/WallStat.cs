@@ -55,7 +55,7 @@ public class WallStat : MonoBehaviour
         CalWallScaleAndHp();
 
         float gap = initialSizeX - spriteRenderer.size.x;
-        CreateWallEffect(gap, spriteRenderer.size.x - 56);
+        CreateWallEffect(gap, spriteRenderer.size.x);
 
         return dmg;
     }
