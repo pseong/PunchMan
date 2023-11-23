@@ -129,7 +129,7 @@ public class WallStat : MonoBehaviour
     public void GameOver()
     {
         PlayerController playerController = PlayerStat.instance.GetComponent<PlayerController>();
-        playerController.gameObject.transform.position = Vector3.zero;
+        playerController.gameObject.transform.position = new Vector3(30, 0, 0);
         playerController.resetMove();
 
         LobbyManager.instance.gameObject.SetActive(true);
