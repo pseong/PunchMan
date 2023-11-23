@@ -8,7 +8,6 @@ public class Item
     public string itemName;
     public string itemDescription;
     public int itemCount;
-    public Sprite itemIcon;
     public ItemType itemType;
 
     public enum ItemType
@@ -36,7 +35,6 @@ public class Item
         this.itemDescription = itemDes;
         this.itemType = itemType;
         this.itemCount = itemCount;
-        this.itemIcon = ItemResourceManager.instance.sprites[itemID];
 
         this.atk = atk;
         this.cric = cric;

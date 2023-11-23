@@ -372,25 +372,25 @@ public class Inventory : MonoBehaviour
             PlayerStat.instance.plus_cric = 80;
         }
 
-        if (equipItemList[HAT].itemType != Item.ItemType.AIR) PlayerStat.instance.hat.sprite = equipItemList[HAT].itemIcon;
+        if (equipItemList[HAT].itemType != Item.ItemType.AIR) PlayerStat.instance.hat.sprite = ItemResourceManager.instance.sprites[equipItemList[HAT].itemID];
         else PlayerStat.instance.hat.sprite = null;
 
-        if (equipItemList[HEAD].itemType != Item.ItemType.AIR) PlayerStat.instance.head.sprite = equipItemList[HEAD].itemIcon;
+        if (equipItemList[HEAD].itemType != Item.ItemType.AIR) PlayerStat.instance.head.sprite = ItemResourceManager.instance.sprites[equipItemList[HEAD].itemID];
         else PlayerStat.instance.head.sprite = baseHead;
 
-        if (equipItemList[CLOTHES].itemType != Item.ItemType.AIR) PlayerStat.instance.clothes.sprite = equipItemList[CLOTHES].itemIcon;
+        if (equipItemList[CLOTHES].itemType != Item.ItemType.AIR) PlayerStat.instance.clothes.sprite = ItemResourceManager.instance.sprites[equipItemList[CLOTHES].itemID];
         else PlayerStat.instance.clothes.sprite = baseClothes;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_l.sprite = equipItemList[GLOVES].itemIcon;
+        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_l.sprite = ItemResourceManager.instance.sprites[equipItemList[GLOVES].itemID];
         else PlayerStat.instance.glove_l.sprite = baseGloves;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_r.sprite = equipItemList[GLOVES].itemIcon;
+        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_r.sprite = ItemResourceManager.instance.sprites[equipItemList[GLOVES].itemID];
         else PlayerStat.instance.glove_r.sprite = baseGloves;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_l.sprite = equipItemList[SHOES].itemIcon;
+        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_l.sprite = ItemResourceManager.instance.sprites[equipItemList[SHOES].itemID];
         else PlayerStat.instance.shoe_l.sprite = baseShoes;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_r.sprite = equipItemList[SHOES].itemIcon;
+        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_r.sprite = ItemResourceManager.instance.sprites[equipItemList[SHOES].itemID];
         else PlayerStat.instance.shoe_r.sprite = baseShoes;
     }
 }

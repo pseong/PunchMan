@@ -5,28 +5,29 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Image icon;
+    public Image image;
     public Item item;
     public GameObject selected_item;
     private Inventory inventory;
     public int index;
 
-    public void SetItem(Item _item, int _index)
+    public void SetItem(Item item, int index)
     {
-        icon.sprite = _item.itemIcon;
-        item = _item;
-        index = _index;
+        this.item = item;
+        this.index = index;
+        image.sprite = ItemResourceManager.instance.sprites[item.itemID];
+
         inventory = GetComponentInParent<Inventory>();
 
-        if (icon.sprite.rect.width > icon.sprite.rect.height)
+        if (image.sprite.rect.width > image.sprite.rect.height)
         {
-            float ratio = icon.sprite.rect.height / icon.sprite.rect.width;
-            icon.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100 * ratio);
+            float ratio = image.sprite.rect.height / image.sprite.rect.width;
+            image.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100 * ratio);
         }
         else
         {
-            float ratio = icon.sprite.rect.width / icon.sprite.rect.height;
-            icon.GetComponent<RectTransform>().sizeDelta = new Vector2(100 * ratio, 100);
+            float ratio = image.sprite.rect.width / image.sprite.rect.height;
+            image.GetComponent<RectTransform>().sizeDelta = new Vector2(100 * ratio, 100);
         }
     }
 
