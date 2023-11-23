@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
 
     public float move { get; private set; } // 감지된 움직임 입력값
 
-    private CameraManager camera;
     private Rigidbody2D playerRigidbody; // 사용할 리지드바디 컴포넌트
     private SpriteRenderer playerRenderer;
     private Animator animator;
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-        camera = FindObjectOfType<CameraManager>();
         playerStat = FindObjectOfType<PlayerStat>();
 
         animator.SetFloat("Direction", -1f);
@@ -115,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
     private void Move()
     {
-        playerRigidbody.velocity = new Vector2(0.1f * move * (playerStat.speed + playerStat.plus_speed), playerRigidbody.velocity.y);
+        playerRigidbody.velocity = new Vector2(0.08f * move * (playerStat.speed + playerStat.plus_speed), playerRigidbody.velocity.y);
 
         if (move > 0)
         {

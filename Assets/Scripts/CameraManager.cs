@@ -17,44 +17,40 @@ public class CameraManager : MonoBehaviour
     private float halfWidth;
     private float halfHeight;
 
+    private float minX = 0f;
+    private float maxX = 60f;
+
+    private Transform playerTransform;
+
+    private float verticalSize;
+    private float horizontalSize;
+
     Vector3 originPos;
 
-    //private Camera theCamera;
-
-    //void Start()
-    //{
-    //Screen.SetResolution(Screen.width, Screen.width * 16 / 9, true);
-    //theCamera = GetComponent<Camera>();
-    //halfHeight = theCamera.orthographicSize;
-    //halfWidth = halfHeight * Screen.width / Screen.height;
-    //}
-    //}
+    void Start()
+    {
+        playerTransform = transform.parent;
+        verticalSize = Camera.main.orthographicSize * 2;
+        horizontalSize = verticalSize * Camera.main.aspect;
+    }
 
     void Update()
     {
-        /*
-        if (target.gameObject != null && bound != null)
+        transform.position = new Vector3(playerTransform.position.x, transform.position.y, transform.position.z);
+        if (transform.position.x - horizontalSize / 2 < minX)
         {
-            targetPosition.Set(target.transform.position.x, target.transform.position.y, this.transform.position.z);
-            if (targetPosition.x + halfWidth > maxBound.x)
-            {
-                this.transform.position = new Vector3(maxBound.x - halfWidth, this.transform.position.y, this.transform.position.z);
-            }
-            else if (targetPosition.x - halfWidth < minBound.x)
-            {
-                this.transform.position = new Vector3(minBound.x + halfWidth, this.transform.position.y, this.transform.position.z);
-            }
-            else
-            {
-                transform.position.Set(0, 2, -10);
-            }
-        }*/
+            transform.position = new Vector3(minX + horizontalSize / 2, transform.position.y, transform.position.z);
+        }
+        if (transform.position.x + horizontalSize / 2 > maxX)
+        {
+            transform.position = new Vector3(maxX - horizontalSize / 2, transform.position.y, transform.position.z);
+        }
     }
 
     public void Shake_()
     {
         originPos = transform.localPosition;
-        StartCoroutine(Shake(0.3f,0.05f));
+        StartCoroutine(Shake(0.3f, 0.05f));
     }
 
     public IEnumerator Shake(float _amount, float _duration)
