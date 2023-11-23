@@ -15,14 +15,6 @@ public class InventorySlot : MonoBehaviour
     {
         icon.sprite = _item.itemIcon;
         item = _item;
-        //if(Item.ItemType.Use == _item.itemType)
-        //{
-        //    if (_item.itemCount > 0)
-        //       itemCountText.text = _item.itemCount.ToString();
-        //    else
-        //        itemCountText.text = "";
-        //}
-        //카운트가 아니라 레벨로 할까????
         index = _index;
         inventory = GetComponentInParent<Inventory>();
 

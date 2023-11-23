@@ -26,7 +26,7 @@ public class Inventory : MonoBehaviour
 
     private static Inventory m_instance;
 
-    private DataBaseManager theDataBase;
+    private ItemResourceManager itemResourceManager;
 
     public Text descriptionTxt; // 부연설명.
 
@@ -55,8 +55,6 @@ public class Inventory : MonoBehaviour
 
     public WaitForSeconds waitTime = new WaitForSeconds(0.01f);
     public Scrollbar scrollbar;
-
-    private PlayerStat playerStat;
 
     void Awake()
     {
@@ -89,12 +87,6 @@ public class Inventory : MonoBehaviour
         inventoryItemList.Add(new Item(80001, "둥이머리", "공격력 +2", Item.ItemType.HEAD, 2));
 
         inventoryItemList.Add(new Item(90000, "지피지피신모자", "공격력 +2", Item.ItemType.HAT, 5));
-    }
-
-    void Start()
-    {
-        theDataBase = FindObjectOfType<DataBaseManager>();
-        playerStat = FindObjectOfType<PlayerStat>();
     }
 
     public void ClickTab0()
@@ -357,48 +349,48 @@ public class Inventory : MonoBehaviour
 
     private void EquipEffect()
     {
-        playerStat.plus_atk = 0;
-        playerStat.plus_cric = 0;
-        playerStat.plus_crid = 0;
-        playerStat.plus_cdr = 0;
-        playerStat.plus_speed = 0;
+        PlayerStat.instance.plus_atk = 0;
+        PlayerStat.instance.plus_cric = 0;
+        PlayerStat.instance.plus_crid = 0;
+        PlayerStat.instance.plus_cdr = 0;
+        PlayerStat.instance.plus_speed = 0;
 
         for (int i = 0; i < 6; ++i)
         {
-            playerStat.plus_atk += equipItemList[i].atk;
-            playerStat.plus_cric += equipItemList[i].cric;
-            playerStat.plus_crid += equipItemList[i].crid;
-            playerStat.plus_cdr += equipItemList[i].cdr;
-            playerStat.plus_speed += equipItemList[i].speed;
+            PlayerStat.instance.plus_atk += equipItemList[i].atk;
+            PlayerStat.instance.plus_cric += equipItemList[i].cric;
+            PlayerStat.instance.plus_crid += equipItemList[i].crid;
+            PlayerStat.instance.plus_cdr += equipItemList[i].cdr;
+            PlayerStat.instance.plus_speed += equipItemList[i].speed;
         }
-        if (playerStat.plus_cdr >= 50)
+        if (PlayerStat.instance.plus_cdr >= 50)
         {
-            playerStat.plus_cdr = 50;
+            PlayerStat.instance.plus_cdr = 50;
         }
-        if (playerStat.plus_cric >= 80)
+        if (PlayerStat.instance.plus_cric >= 80)
         {
-            playerStat.plus_cric = 80;
+            PlayerStat.instance.plus_cric = 80;
         }
 
-        if (equipItemList[HAT].itemType != Item.ItemType.AIR) playerStat.hat.sprite = equipItemList[HAT].itemIcon;
-        else playerStat.hat.sprite = null;
+        if (equipItemList[HAT].itemType != Item.ItemType.AIR) PlayerStat.instance.hat.sprite = equipItemList[HAT].itemIcon;
+        else PlayerStat.instance.hat.sprite = null;
 
-        if (equipItemList[HEAD].itemType != Item.ItemType.AIR) playerStat.head.sprite = equipItemList[HEAD].itemIcon;
-        else playerStat.head.sprite = baseHead;
+        if (equipItemList[HEAD].itemType != Item.ItemType.AIR) PlayerStat.instance.head.sprite = equipItemList[HEAD].itemIcon;
+        else PlayerStat.instance.head.sprite = baseHead;
 
-        if (equipItemList[CLOTHES].itemType != Item.ItemType.AIR) playerStat.clothes.sprite = equipItemList[CLOTHES].itemIcon;
-        else playerStat.clothes.sprite = baseClothes;
+        if (equipItemList[CLOTHES].itemType != Item.ItemType.AIR) PlayerStat.instance.clothes.sprite = equipItemList[CLOTHES].itemIcon;
+        else PlayerStat.instance.clothes.sprite = baseClothes;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) playerStat.glove_l.sprite = equipItemList[GLOVES].itemIcon;
-        else playerStat.glove_l.sprite = baseGloves;
+        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_l.sprite = equipItemList[GLOVES].itemIcon;
+        else PlayerStat.instance.glove_l.sprite = baseGloves;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) playerStat.glove_r.sprite = equipItemList[GLOVES].itemIcon;
-        else playerStat.glove_r.sprite = baseGloves;
+        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_r.sprite = equipItemList[GLOVES].itemIcon;
+        else PlayerStat.instance.glove_r.sprite = baseGloves;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) playerStat.shoe_l.sprite = equipItemList[SHOES].itemIcon;
-        else playerStat.shoe_l.sprite = baseShoes;
+        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_l.sprite = equipItemList[SHOES].itemIcon;
+        else PlayerStat.instance.shoe_l.sprite = baseShoes;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) playerStat.shoe_r.sprite = equipItemList[SHOES].itemIcon;
-        else playerStat.shoe_r.sprite = baseShoes;
+        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_r.sprite = equipItemList[SHOES].itemIcon;
+        else PlayerStat.instance.shoe_r.sprite = baseShoes;
     }
 }

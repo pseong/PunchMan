@@ -28,20 +28,20 @@ public class Item
     public int cdr;
     public int speed;
 
-    public Item(int _itemID, string _itemName, string _itemDes, ItemType _itemType,
-        int _atk = 0, int _cric = 0, int _crid = 0, int _cdr = 0, int _speed = 0, int _itemCount = 1)
+    public Item(int itemID, string itemName, string itemDes, ItemType itemType,
+        int atk = 0, int cric = 0, int crid = 0, int cdr = 0, int speed = 0, int itemCount = 1)
     {
-        itemID = _itemID;
-        itemName = _itemName;
-        itemDescription = _itemDes;
-        itemType = _itemType;
-        itemCount = _itemCount;
-        itemIcon = Resources.Load<Sprite>("ItemIcon/" + _itemID.ToString());
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemDescription = itemDes;
+        this.itemType = itemType;
+        this.itemCount = itemCount;
+        this.itemIcon = ItemResourceManager.instance.sprites[itemID];
 
-        atk = _atk;
-        cric = _cric;
-        crid = _crid;
-        speed = _speed;
-        cdr = _cdr;
+        this.atk = atk;
+        this.cric = cric;
+        this.crid = crid;
+        this.speed = speed;
+        this.cdr = cdr;
     }
 }

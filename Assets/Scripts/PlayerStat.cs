@@ -48,15 +48,19 @@ public class PlayerStat : MonoBehaviour
     public void AddExp(int value)
     {
         exp += value;
-        if (lv < MEXP.Length && exp > MEXP[lv])
+        if (exp > MEXP[lv])
         {
-            exp = exp - MEXP[lv];
-            lv++;
+            if (lv < MEXP.Length - 1)
+            {
+                exp = exp - MEXP[lv];
+                lv++;
+            }
+            else
+            {
+                exp = MEXP[lv];
+            }
         }
     }
-
-
-    //public string dmgSound;
 
     public SpriteRenderer hat;
     public SpriteRenderer head;
@@ -65,45 +69,6 @@ public class PlayerStat : MonoBehaviour
     public SpriteRenderer glove_l;
     public SpriteRenderer shoe_r;
     public SpriteRenderer shoe_l;
-
-    //public GameObject prefabs_Floating_text;
-    //public GameObject parent;
-
-    void Start()
-    {
-
-    }
-
-    /*
-    public void Hit(int _enemyAtk)
-    {
-        int dmg;
-
-        if (def >= _enemyAtk)
-            dmg = 1;
-        else
-            dmg = _enemyAtk - def;
-
-        currentHp -= dmg;
-
-        if (currentHp <= 0)
-        {
-            //----------------------------------------------
-        }
-
-        //AudioManager.instance.Play(dmgSound);
-
-        Vector3 vector = transform.position;
-        vector.y += 60;
-
-        //GameObject clone = Instantiate(prefabs_Floating_text, vector, Quaternion.Euler(Vector3.zero);
-        //clone.GetComponent<FloatingText>().text.text = dmg.ToString();
-        //clone.GetComponent<FloatingText>().text.color = Color.red;
-        //clone.GetComponent<FloatingText>().text.fontSize = 25;
-        //clone.transform.SetParent(parent.transform);
-        //StopAllCoroutines();
-        //StartCouroutine(HitCoroutine()):
-    }*/
 
     IEnumerator HitCoroutine()
     {
