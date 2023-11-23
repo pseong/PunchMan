@@ -48,6 +48,7 @@ public class WallStat : MonoBehaviour
 
         if (currentHp <= 0)
         {
+            Win();
             GameOver();
             return dmg;
         }
@@ -124,6 +125,11 @@ public class WallStat : MonoBehaviour
     private void UpdateHpSlider(float scale)
     {
         hpSlider.value = (currentHp < hp) ? scale : 1;
+    }
+
+    public void Win()
+    {
+        PlayerStat.instance.AddExp(20);
     }
 
     public void GameOver()

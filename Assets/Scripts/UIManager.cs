@@ -5,10 +5,6 @@ using UnityEngine.UI; // UI 관련 코드
 // 필요한 UI에 즉시 접근하고 변경할 수 있도록 허용하는 UI 매니저
 public class UIManager : MonoBehaviour
 {
-    public PlayerController playercontroller;
-    public RectTransform joystick;
-
-    // 싱글톤 접근용 프로퍼티
     public static UIManager instance
     {
         get
@@ -23,10 +19,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private static UIManager m_instance; // 싱글톤이 할당될 변수
+    private static UIManager m_instance;
 
-    public Button BackButton;
-    public string touch_sound;
+    public PlayerController playerController;
+    public RectTransform joystick;
+
+    public Slider expSlider;
+    public Text expTxt;
 
     private void Awake()
     {
@@ -36,17 +35,15 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ClickAttack()
+    void Update()
     {
-        playercontroller.startAttack = true;
+        float tscale = (float)PlayerStat.instance.exp / PlayerStat.instance.MEXP[PlayerStat.instance.lv];
+        expSlider.value = tscale;
+        expTxt.text = string.Format("{0:N2}%", tscale * 100);
     }
 
-    public void ClickBack()
+    public void ClickAttack()
     {
-        AudioManager.instance.Play(touch_sound);
-        PlayerStat.instance.GetComponent<PlayerController>().gameObject.transform.position = new Vector3(0, 0, 0);
-        PlayerStat.instance.GetComponent<PlayerController>().resetMove();
-        LobbyManager.instance.gameObject.SetActive(true);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Lobby");
+        playerController.startAttack = true;
     }
 }

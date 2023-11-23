@@ -41,6 +41,21 @@ public class PlayerStat : MonoBehaviour
     public int plus_cdr;
     public float plus_speed;
 
+    public int[] MEXP = new int[] { 0, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000 };
+    public int lv;
+
+    public int exp;
+    public void AddExp(int value)
+    {
+        exp += value;
+        if (lv < MEXP.Length && exp > MEXP[lv])
+        {
+            exp = exp - MEXP[lv];
+            lv++;
+        }
+    }
+
+
     //public string dmgSound;
 
     public SpriteRenderer hat;
@@ -54,7 +69,7 @@ public class PlayerStat : MonoBehaviour
     //public GameObject prefabs_Floating_text;
     //public GameObject parent;
 
-    void Start ()
+    void Start()
     {
 
     }
