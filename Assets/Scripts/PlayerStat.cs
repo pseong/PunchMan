@@ -25,6 +25,16 @@ public class PlayerStat : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        equipItemList = new Item[6];
+        equipItemList[0] = new Item(0, "", "", Item.ItemType.AIR);
+        equipItemList[1] = new Item(0, "", "", Item.ItemType.AIR);
+        equipItemList[2] = new Item(0, "", "", Item.ItemType.AIR);
+        equipItemList[3] = new Item(0, "", "", Item.ItemType.AIR);
+        equipItemList[4] = new Item(0, "", "", Item.ItemType.AIR);
+        equipItemList[5] = new Item(0, "", "", Item.ItemType.AIR);
+
+        inventoryItemList = new List<Item>();
     }
 
     public int gold;
@@ -62,13 +72,8 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
-    public SpriteRenderer hat;
-    public SpriteRenderer head;
-    public SpriteRenderer clothes;
-    public SpriteRenderer glove_r;
-    public SpriteRenderer glove_l;
-    public SpriteRenderer shoe_r;
-    public SpriteRenderer shoe_l;
+    public List<Item> inventoryItemList; // 플레이어가 소지한 아이템 리스트
+    public Item[] equipItemList; // 장착한 아이템
 
     IEnumerator HitCoroutine()
     {

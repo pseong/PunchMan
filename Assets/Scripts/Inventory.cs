@@ -42,9 +42,7 @@ public class Inventory : MonoBehaviour
     public List<InventorySlot> inventorySlots; // 인벤토리 슬롯
     public InventorySlot[] equipSlots; // 장착 슬롯
 
-    private List<Item> inventoryItemList; // 플레이어가 소지한 아이템 리스트.
     private List<Item> inventoryTabList;  // 선택한 탭에 따라 다르게 보여질 아이템 리스트.
-    private Item[] equipItemList; // 장착한 아이템
 
     private const int HAT = 0, HEAD = 1, CLOTHES = 2, GLOVES = 3, PANTS = 4, SHOES = 5;
 
@@ -56,37 +54,38 @@ public class Inventory : MonoBehaviour
     public WaitForSeconds waitTime = new WaitForSeconds(0.01f);
     public Scrollbar scrollbar;
 
+    public SpriteRenderer hat;
+    public SpriteRenderer head;
+    public SpriteRenderer clothes;
+    public SpriteRenderer glove_r;
+    public SpriteRenderer glove_l;
+    public SpriteRenderer shoe_r;
+    public SpriteRenderer shoe_l;
+
     void Awake()
     {
         if (instance != this)
         {
             Destroy(gameObject);
         }
-        inventoryItemList = new List<Item>();
+        PlayerStat.instance.inventoryItemList = new List<Item>();
         inventoryTabList = new List<Item>();
         inventorySlots = new List<InventorySlot>();
         inventorySlots.Clear();
-        equipItemList = new Item[6];
-        equipItemList[0] = new Item(0, "", "", Item.ItemType.AIR);
-        equipItemList[1] = new Item(0, "", "", Item.ItemType.AIR);
-        equipItemList[2] = new Item(0, "", "", Item.ItemType.AIR);
-        equipItemList[3] = new Item(0, "", "", Item.ItemType.AIR);
-        equipItemList[4] = new Item(0, "", "", Item.ItemType.AIR);
-        equipItemList[5] = new Item(0, "", "", Item.ItemType.AIR);
 
         selectedTab = 0;
         selectedItem = -1;
 
-        inventoryItemList.Add(new Item(50001, "라라랄장갑", "공격력 +2", Item.ItemType.GLOVES, 2));
+        PlayerStat.instance.inventoryItemList.Add(new Item(50001, "라라랄장갑", "공격력 +2", Item.ItemType.GLOVES, 2));
 
-        inventoryItemList.Add(new Item(60001, "땡땡땡신발", "속도 +100", Item.ItemType.SHOES, 0, 0, 0, 0, 100));
+        PlayerStat.instance.inventoryItemList.Add(new Item(60001, "땡땡땡신발", "속도 +100", Item.ItemType.SHOES, 0, 0, 0, 0, 100));
 
-        inventoryItemList.Add(new Item(70001, "민무늬1", "공격력 +2", Item.ItemType.CLOTHES, 2));
-        inventoryItemList.Add(new Item(70002, "롤로로롤옷", "공격력 +2", Item.ItemType.CLOTHES, 2));
+        PlayerStat.instance.inventoryItemList.Add(new Item(70001, "민무늬1", "공격력 +2", Item.ItemType.CLOTHES, 2));
+        PlayerStat.instance.inventoryItemList.Add(new Item(70002, "롤로로롤옷", "공격력 +2", Item.ItemType.CLOTHES, 2));
 
-        inventoryItemList.Add(new Item(80001, "둥이머리", "공격력 +2", Item.ItemType.HEAD, 2));
+        PlayerStat.instance.inventoryItemList.Add(new Item(80001, "둥이머리", "공격력 +2", Item.ItemType.HEAD, 2));
 
-        inventoryItemList.Add(new Item(90000, "지피지피신모자", "공격력 +2", Item.ItemType.HAT, 5));
+        PlayerStat.instance.inventoryItemList.Add(new Item(90000, "지피지피신모자", "공격력 +2", Item.ItemType.HAT, 5));
     }
 
     public void ClickTab0()
@@ -202,10 +201,10 @@ public class Inventory : MonoBehaviour
 
         // 탭에 따른 아이템 분류. 그것을 인벤토리 탭 리스트에 추가
         selectedTabs[selectedTab].GetComponentInChildren<Image>().color = color;
-        for (int i = 0; i < inventoryItemList.Count; i++)
+        for (int i = 0; i < PlayerStat.instance.inventoryItemList.Count; i++)
         {
-            if (selectedTab == (int)inventoryItemList[i].itemType)
-                inventoryTabList.Add(inventoryItemList[i]);
+            if (selectedTab == (int)PlayerStat.instance.inventoryItemList[i].itemType)
+                inventoryTabList.Add(PlayerStat.instance.inventoryItemList[i]);
         }
 
         for (int i = 0; i < inventoryTabList.Count; i++)
@@ -224,7 +223,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            equipSlots[i].SetItem(equipItemList[i], i);
+            equipSlots[i].SetItem(PlayerStat.instance.equipItemList[i], i);
         }
 
         //SelectedItem();
@@ -251,7 +250,7 @@ public class Inventory : MonoBehaviour
 
     Item GetItem(int index)
     {
-        if (index < 6) return equipItemList[index];
+        if (index < 6) return PlayerStat.instance.equipItemList[index];
         else return inventoryTabList[index - 6];
     }
 
@@ -294,19 +293,19 @@ public class Inventory : MonoBehaviour
             {
                 //if (theDataBase.itemList[i].itemType == Item.ItemType.Use) // 아이템이 소모품이라면
                 //{
-                for (int j = 0; j < inventoryItemList.Count; ++j) // 소지품에 같은 아이템 소지 유무 확인
+                for (int j = 0; j < PlayerStat.instance.inventoryItemList.Count; ++j) // 소지품에 같은 아이템 소지 유무 확인
                 {
                     //같은게 있으면 장비의 레벨을 업그레이드 시켜준다?
-                    if (inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템 있다면 개수만 증가
+                    if (PlayerStat.instance.inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템 있다면 개수만 증가
                     {
-                        inventoryItemList[j].itemCount += _count;
+                        PlayerStat.instance.inventoryItemList[j].itemCount += _count;
                     }
                     return;
                 }
                 //}
             }
-            inventoryItemList.Add(theDataBase.itemList[i]); // 소지품에 같은 소모품 없거나 장비라면 해당 아이템 추가
-            inventoryItemList[inventoryItemList.Count - 1].itemCount = _count;
+            PlayerStat.instance.inventoryItemList.Add(theDataBase.itemList[i]); // 소지품에 같은 소모품 없거나 장비라면 해당 아이템 추가
+            PlayerStat.instance.inventoryItemList[PlayerStat.instance.inventoryItemList.Count - 1].itemCount = _count;
             return;
         }
         Debug.LogError("잘못된 아이템 입니다.");*/
@@ -320,17 +319,17 @@ public class Inventory : MonoBehaviour
             Item item = GetItem(selectedItem);
             int type = (int)item.itemType;
 
-            if (equipItemList[type].itemType != Item.ItemType.AIR)
+            if (PlayerStat.instance.equipItemList[type].itemType != Item.ItemType.AIR)
             {
-                Item temp = equipItemList[type];
-                equipItemList[type] = item;
-                inventoryItemList.Remove(item);
-                inventoryItemList.Add(temp);
+                Item temp = PlayerStat.instance.equipItemList[type];
+                PlayerStat.instance.equipItemList[type] = item;
+                PlayerStat.instance.inventoryItemList.Remove(item);
+                PlayerStat.instance.inventoryItemList.Add(temp);
             }
             else
             {
-                equipItemList[type] = item;
-                inventoryItemList.Remove(item);
+                PlayerStat.instance.equipItemList[type] = item;
+                PlayerStat.instance.inventoryItemList.Remove(item);
             }
             ShowItem();
         }
@@ -338,11 +337,11 @@ public class Inventory : MonoBehaviour
 
     public void ClickRelease()
     {
-        if (selectedItem >= 0 && selectedItem < 6 && equipItemList[selectedItem].itemType != Item.ItemType.AIR)
+        if (selectedItem >= 0 && selectedItem < 6 && PlayerStat.instance.equipItemList[selectedItem].itemType != Item.ItemType.AIR)
         {
             AudioManager.instance.Play(equip_sound);
-            inventoryItemList.Add(equipItemList[selectedItem]);
-            equipItemList[selectedItem] = new Item(0, "", "", Item.ItemType.AIR);
+            PlayerStat.instance.inventoryItemList.Add(PlayerStat.instance.equipItemList[selectedItem]);
+            PlayerStat.instance.equipItemList[selectedItem] = new Item(0, "", "", Item.ItemType.AIR);
         }
         ShowItem();
     }
@@ -357,11 +356,11 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < 6; ++i)
         {
-            PlayerStat.instance.plus_atk += equipItemList[i].atk;
-            PlayerStat.instance.plus_cric += equipItemList[i].cric;
-            PlayerStat.instance.plus_crid += equipItemList[i].crid;
-            PlayerStat.instance.plus_cdr += equipItemList[i].cdr;
-            PlayerStat.instance.plus_speed += equipItemList[i].speed;
+            PlayerStat.instance.plus_atk += PlayerStat.instance.equipItemList[i].atk;
+            PlayerStat.instance.plus_cric += PlayerStat.instance.equipItemList[i].cric;
+            PlayerStat.instance.plus_crid += PlayerStat.instance.equipItemList[i].crid;
+            PlayerStat.instance.plus_cdr += PlayerStat.instance.equipItemList[i].cdr;
+            PlayerStat.instance.plus_speed += PlayerStat.instance.equipItemList[i].speed;
         }
         if (PlayerStat.instance.plus_cdr >= 50)
         {
@@ -372,25 +371,25 @@ public class Inventory : MonoBehaviour
             PlayerStat.instance.plus_cric = 80;
         }
 
-        if (equipItemList[HAT].itemType != Item.ItemType.AIR) PlayerStat.instance.hat.sprite = ItemResourceManager.instance.sprites[equipItemList[HAT].itemID];
-        else PlayerStat.instance.hat.sprite = null;
+        if (PlayerStat.instance.equipItemList[HAT].itemType != Item.ItemType.AIR) hat.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[HAT].itemID];
+        else hat.sprite = null;
 
-        if (equipItemList[HEAD].itemType != Item.ItemType.AIR) PlayerStat.instance.head.sprite = ItemResourceManager.instance.sprites[equipItemList[HEAD].itemID];
-        else PlayerStat.instance.head.sprite = baseHead;
+        if (PlayerStat.instance.equipItemList[HEAD].itemType != Item.ItemType.AIR) head.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[HEAD].itemID];
+        else head.sprite = baseHead;
 
-        if (equipItemList[CLOTHES].itemType != Item.ItemType.AIR) PlayerStat.instance.clothes.sprite = ItemResourceManager.instance.sprites[equipItemList[CLOTHES].itemID];
-        else PlayerStat.instance.clothes.sprite = baseClothes;
+        if (PlayerStat.instance.equipItemList[CLOTHES].itemType != Item.ItemType.AIR) clothes.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[CLOTHES].itemID];
+        else clothes.sprite = baseClothes;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_l.sprite = ItemResourceManager.instance.sprites[equipItemList[GLOVES].itemID];
-        else PlayerStat.instance.glove_l.sprite = baseGloves;
+        if (PlayerStat.instance.equipItemList[GLOVES].itemType != Item.ItemType.AIR) glove_l.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[GLOVES].itemID];
+        else glove_l.sprite = baseGloves;
 
-        if (equipItemList[GLOVES].itemType != Item.ItemType.AIR) PlayerStat.instance.glove_r.sprite = ItemResourceManager.instance.sprites[equipItemList[GLOVES].itemID];
-        else PlayerStat.instance.glove_r.sprite = baseGloves;
+        if (PlayerStat.instance.equipItemList[GLOVES].itemType != Item.ItemType.AIR) glove_r.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[GLOVES].itemID];
+        else glove_r.sprite = baseGloves;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_l.sprite = ItemResourceManager.instance.sprites[equipItemList[SHOES].itemID];
-        else PlayerStat.instance.shoe_l.sprite = baseShoes;
+        if (PlayerStat.instance.equipItemList[SHOES].itemType != Item.ItemType.AIR) shoe_l.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[SHOES].itemID];
+        else shoe_l.sprite = baseShoes;
 
-        if (equipItemList[SHOES].itemType != Item.ItemType.AIR) PlayerStat.instance.shoe_r.sprite = ItemResourceManager.instance.sprites[equipItemList[SHOES].itemID];
-        else PlayerStat.instance.shoe_r.sprite = baseShoes;
+        if (PlayerStat.instance.equipItemList[SHOES].itemType != Item.ItemType.AIR) shoe_r.sprite = ItemResourceManager.instance.sprites[PlayerStat.instance.equipItemList[SHOES].itemID];
+        else shoe_r.sprite = baseShoes;
     }
 }
