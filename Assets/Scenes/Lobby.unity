@@ -3224,7 +3224,7 @@ MonoBehaviour:
   glove_r: {fileID: 11580213}
   glove_l: {fileID: 243106098}
   shoe_r: {fileID: 676736462}
-  shoe_l: {fileID: 0}
+  shoe_l: {fileID: 1177587660}
 --- !u!114 &669328939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4371,6 +4371,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175416761}
   m_CullTransparentMesh: 0
+--- !u!212 &1177587660 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 1474524402298463856, guid: 54f16b6bb3a8c6142945ded2b192cbd0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6736924373239929410}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1190712044 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2999095124383268678, guid: 67d341b59fc362746937e71996dd8d99,

@@ -4,5 +4,5 @@
 
 <h4> 인게임 영상 </h4>
 
-[![Video Label](http://img.youtube.com/vi/K0lDEqz8nxE/0.jpg)](https://youtu.be/K0lDEqz8nxE)
+[![Video Label](http://img.youtube.com/vi/XNxqa4gRPkU/0.jpg)](https://youtu.be/XNxqa4gRPkU)
 
