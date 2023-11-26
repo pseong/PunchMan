@@ -282,35 +282,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void GetItem(int _itemID, int _count = 1)
-    {
-        // 유물 비슷한 시스템 해볼까....
-
-        /*
-        for (int i = 0; i < theDataBase.itemList.Count; i++) // 데이터 베이스 아이템 검색
-        {
-            if (_itemID == theDataBase.itemList[i].itemID) // 데이터 베이스 아이템 발견
-            {
-                //if (theDataBase.itemList[i].itemType == Item.ItemType.Use) // 아이템이 소모품이라면
-                //{
-                for (int j = 0; j < PlayerStat.instance.inventoryItemList.Count; ++j) // 소지품에 같은 아이템 소지 유무 확인
-                {
-                    //같은게 있으면 장비의 레벨을 업그레이드 시켜준다?
-                    if (PlayerStat.instance.inventoryItemList[j].itemID == _itemID) // 소지품에 같은 아이템 있다면 개수만 증가
-                    {
-                        PlayerStat.instance.inventoryItemList[j].itemCount += _count;
-                    }
-                    return;
-                }
-                //}
-            }
-            PlayerStat.instance.inventoryItemList.Add(theDataBase.itemList[i]); // 소지품에 같은 소모품 없거나 장비라면 해당 아이템 추가
-            PlayerStat.instance.inventoryItemList[PlayerStat.instance.inventoryItemList.Count - 1].itemCount = _count;
-            return;
-        }
-        Debug.LogError("잘못된 아이템 입니다.");*/
-    }
-
     public void ClickEquip()
     {
         if (selectedItem >= 6)
